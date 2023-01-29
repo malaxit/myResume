@@ -1,0 +1,137 @@
+html * {
+	font-family: Poiret One;
+	font-size: 2vh;
+}
+
+canvas {
+  height: 100%;
+  width: 100%;
+}
+
+html h3 {
+    font-size: 3vh;
+    font-weight: bolder;
+  }
+
+#canvas {
+  position: fixed;
+  width: auto;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.flex-wrap {
+	display: flex;
+}
+
+.container-calc {
+  border-radius: 5px;
+  padding: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  color: white;
+  background:rgba(255, 255, 255, 0.1);
+  width: 30%;
+}
+
+input, select {
+  background:rgba(255, 255, 255, 0.1);
+  width: 100%;
+  padding: 10px;
+  border-style: none;
+  color: white;
+  border-radius: 4px;
+}
+
+option {
+  color: black;
+  font-weight: bolder;
+}
+
+#fx-select option {
+  color: white;
+  font-weight: normal;
+}
+
+#fx-select {
+   height: 92px;
+  }
+
+button {
+  font-weight: bold;
+  padding: 15px;
+  color: black;
+}
+
+#submit {
+  background-color: #4CAF50;
+  color: white;
+  margin-top: 20px;
+  border: none;
+  border-radius: 4px;
+  opacity: 1;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: block;
+}
+
+aside {
+  background:rgba(255, 255, 255, 0.1);
+  color: white;
+  border-radius: 5px;
+  padding: 20px;
+  width: 70%;
+  float: right;
+}
+
+.tips {
+	display:none;
+	padding: 10px;
+}
+
+@media (max-device-width: 768px) {
+.flex-wrap { 
+  display: initial;
+  }
+
+html * {
+	font-size: 2.5vh;
+  }
+
+.container-calc {
+  width: initial;
+}
+
+#submit {
+  font-size: 4vh;
+}
+
+aside {
+  padding: 10px;
+  width: auto;
+	position: static;
+  height: auto;
+  margin-right: 20px;
+	margin-left: 20px;
+	margin-top: 20px;
+  float: none;
+}
+
+button {
+  font-size: 2vh;
+  padding: 10px;
+}
+
+}
+
+@page {
+  margin: 0;
+}

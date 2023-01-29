@@ -1,0 +1,191 @@
+p, button, a {
+  font-family: Segoe UI, Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+h1 {
+  font-family: Segoe UI, Arial, Helvetica, sans-serif;
+  font-size: 32px;
+}
+
+/* LIGHTBOX section */
+/* The Modal (background) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: black;
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    width: 90%;
+    /*max-width: 1200px;*/
+  }
+  
+  /* The Close Button */
+  .close {
+    color: white;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 35px;
+    font-weight: bold;
+    z-index: 10;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #999;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  /* Hide the slides by default */
+  .mySlides {
+    display: none;
+    background-color: black;
+  }
+
+  .mySlides img {
+    display: block;
+
+    max-width: calc(100vw - 200px);
+    margin: 2em auto;
+  }
+  
+  /* Next & previous buttons */
+  .prev,
+  .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  
+  /* Position the "next button" to the right */
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover,
+  .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Number text (1/3 etc) */
+  .numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: -2em;
+    left: -2em;
+  }
+  
+  
+  img.hover-shadow {
+    transition: 0.3s;
+    margin: 1em;
+  }
+  
+  .hover-shadow:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+  }
+
+
+/* ACCORDION section */
+  /* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+  background: #e1e1e1;
+  background-image: linear-gradient(180deg,#f5f5f5,#e5e5e5);
+
+  border:rgb(187, 187, 187) 1px solid;
+    border-top-color: rgb(187, 187, 187);
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-right-color: rgb(187, 187, 187);
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-bottom-color: rgb(153, 153, 153);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-left-color: rgb(187, 187, 187);
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 70%;
+  min-width: 400px;
+  text-align: left;
+
+  outline: none;
+  margin-bottom: 1em;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.accordion:hover {
+  background-color: #ccc;
+}
+
+.active {
+  background-color: #ccc;
+  margin-bottom: 0;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  background-color: white;
+  display: none;
+  overflow: hidden;
+  position: relative;
+  min-width: 400px;
+  width: 70%;
+}
+
+.panel img {
+  position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.accordion:after {
+  content: '\02795'; /* Unicode character for "plus" sign (+) */
+  font-size: 13px;
+  color: #777;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+

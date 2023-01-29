@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Плотность:Теплопроводность:Теплоёмкость</title>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+</head>
+<body>
+<div id="chart"></div>
+
+<div class="footer">
+    <table onchange="lineChart.getMaterialsOnChange(this);">
+      <thead>
+        <tr>
+          <th>Наименование</th>
+          <th>Плотность, кг/м<sup>3</sup></th>
+          <th>Теплопроводность, Вт/(м·град)</th>
+          <th>Теплоемкость, Дж/(кг·град)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <td colspan="4" style="font-weight: bold; padding-left: 1em;"><input type="checkbox" onchange="OnCheckGroup(this)">Газы</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" checked>Азот N<sub>2</sub></td>
+            <td>1.25</td>
+            <td>0.0257</td>
+            <td>1051</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" checked>Аммиак NH<sub>3</sub></td>
+            <td>0.77</td>
+            <td>0.0244</td>
+            <td>2244</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" checked>Аргон Ar</td>
+            <td>1.78</td>
+            <td>0.0177</td>
+            <td>523</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Ацетилен C<sub>2</sub>H<sub>2</sub></td>
+            <td>1.17</td>
+            <td>0.0222</td>
+            <td>1683</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Водород H<sub>2</sub></td>
+            <td>0.089</td>
+            <td>0.183</td>
+            <td>14270</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Воздух</td>
+            <td>1.29</td>
+            <td>0.0262</td>
+            <td>1005</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Гелий He</td>
+            <td>0.17</td>
+            <td>0.143</td>
+            <td>5296</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Кислород O<sub>2</sub></td>
+            <td>1.43</td>
+            <td>0.0267</td>
+            <td>913</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Криптон Kr</td>
+            <td>3.74</td>
+            <td>0.00943</td>
+            <td>251</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Ксенон Xe</td>
+            <td>5.89</td>
+            <td>0.00565</td>
+            <td>159</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Метан CH<sub>4</sub></td>
+            <td>0.72</td>
+            <td>0.0342</td>
+            <td>2483</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Неон Ne</td>
+            <td>0.9</td>
+            <td>0.0493</td>
+            <td>1038</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Окись азота NO</td>
+            <td>1.34</td>
+            <td>0.026</td>
+            <td>976</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Диоксид серы SO<sub>2</sub></td>
+            <td>2.93</td>
+            <td>0.0097</td>
+            <td>625</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Оксид углерода CO</td>
+            <td>1.25</td>
+            <td>0.0244</td>
+            <td>1043</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Пропан C<sub>3</sub>H<sub>8</sub></td>
+            <td>2</td>
+            <td>0.018</td>
+            <td>1863</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Сероводород H<sub>2</sub>S</td>
+            <td>1.53</td>
+            <td>0.0148</td>
+            <td>1026</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Диоксид углерода CO<sub>2</sub></td>
+            <td>1.98</td>
+            <td>0.0166</td>
+            <td>837</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Хлор Cl<sub>2</sub></td>
+            <td>3.22</td>
+            <td>0.0089</td>
+            <td>520</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Этан C<sub>2</sub>H<sub>6</sub></td>
+            <td>1.36</td>
+            <td>0.0214</td>
+            <td>1729</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Этилен C<sub>2</sub>H<sub>4</sub></td>
+            <td>1.18</td>
+            <td>0.0206</td>
+            <td>1528</td>
+        </tr>
+        <tr>
+            <td colspan="4" style="font-weight: bold; padding-left: 1em;"><input type="checkbox" onchange="OnCheckGroup(this)">Жидкости</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Азотная кислота HNO<sub>3</sub></td>
+            <td>1510</td>
+            <td>0.244</td>
+            <td>1720</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Анилин C<sub>6</sub>H<sub>5</sub>NH<sub>2</sub></td>
+            <td>1020</td>
+            <td>0.173</td>
+            <td>2641</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Антифриз (тосол)</td>
+            <td>1065…1085</td>
+            <td>0.433</td>
+            <td>2990</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Ацетон C<sub>3</sub>H<sub>6</sub>O</td>
+            <td>792</td>
+            <td>0.162</td>
+            <td>2160</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Бензин</td>
+            <td>710</td>
+            <td>0.164</td>
+            <td>2090</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Бензол C<sub>6</sub>H<sub>6</sub></td>
+            <td>876</td>
+            <td>0.146</td>
+            <td>1050</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Вода H<sub>2</sub>O</td>
+            <td>1000</td>
+            <td>0.605</td>
+            <td>4182</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Водка (40% об.)</td>
+            <td>935</td>
+            <td>0.3</td>
+            <td>3965</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Водный раствор хлорида натрия (25%-ный) NaCl(aq.)</td>
+            <td>1190</td>
+            <td>0.536</td>
+            <td>3300</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Газойль</td>
+            <td>890…950</td>
+            <td>0.456</td>
+            <td>1900</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Гидроксид аммония(водный аммиак) NH<sub>3</sub>(aq.)</td>
+            <td>880</td>
+            <td>0.44</td>
+            <td>4610</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Глицерин C<sub>3</sub>H<sub>5</sub>(OH)<sub>3</sub></td>
+            <td>1260</td>
+            <td>0.279</td>
+            <td>2430</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Даутерм</td>
+            <td>860</td>
+            <td>0.279</td>
+            <td>1590</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Керосин</td>
+            <td>820</td>
+            <td>0.106</td>
+            <td>2085…2220</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Мазут</td>
+            <td>900…1000</td>
+            <td>0.12…0.16</td>
+            <td>2180</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Нефть</td>
+            <td>550…1050</td>
+            <td>0.12…0.14</td>
+            <td>2100</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Серная кислота H<sub>2</sub>SO<sub>4</sub></td>
+            <td>1835</td>
+            <td>0.62</td>
+            <td>1380</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Масло И-5А</td>
+            <td>912</td>
+            <td>0.14</td>
+            <td>1700</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Масло силиконовое</td>
+            <td>930…990</td>
+            <td>0.16</td>
+            <td>2060</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Скипидар</td>
+            <td>860</td>
+            <td>0.117</td>
+            <td>1800</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Спирт метиловый (метанол) CH<sub>3</sub>OH</td>
+            <td>792</td>
+            <td>0.204</td>
+            <td>2470</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Спирт этиловый (этанол) C<sub>2</sub>H<sub>5</sub>OH</td>
+            <td>789</td>
+            <td>0.168</td>
+            <td>2470</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Толуол C<sub>7</sub>H<sub>8</sub></td>
+            <td>867</td>
+            <td>0.134</td>
+            <td>1130</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Топливо дизельное (солярка)</td>
+            <td>820…845</td>
+            <td>0.116</td>
+            <td>2010</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Уротропин C<sub>6</sub>H<sub>12</sub>N<sub>4</sub></td>
+            <td>1330</td>
+            <td>0.492</td>
+            <td>1470</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Эфир диэтиловый (C<sub>2</sub>H<sub>5</sub>)<sub>2</sub>O</td>
+            <td>714</td>
+            <td>0.133</td>
+            <td>2340</td>
+        </tr>
+        <tr>
+        <td colspan="4" style="font-weight: bold; padding-left: 1em;"><input type="checkbox" onchange="OnCheckGroup(this)">Металлы и сплавы</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Алюминий Al</td>
+            <td>2700</td>
+            <td>221</td>
+            <td>897</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Барий Ba</td>
+            <td>3780</td>
+            <td>18.4</td>
+            <td>285</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Бериллий Be</td>
+            <td>1850</td>
+            <td>178</td>
+            <td>1800</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Ванадий V</td>
+            <td>6110</td>
+            <td>30.7</td>
+            <td>462.5</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Висмут Bi</td>
+            <td>9790</td>
+            <td>7.9</td>
+            <td>123.5</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Вольфрам W</td>
+            <td>1925</td>
+            <td>162</td>
+            <td>134</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Галлий Ga</td>
+            <td>5910</td>
+            <td>28.1</td>
+            <td>376</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Гафний Hf</td>
+            <td>1331</td>
+            <td>23</td>
+            <td>147</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Германий Ge</td>
+            <td>5320</td>
+            <td>60.2</td>
+            <td>322</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Железо Fe</td>
+            <td>7870</td>
+            <td>70…80</td>
+            <td>450</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Сталь углеродистая У10</td>
+            <td>7810</td>
+            <td>40</td>
+            <td>468</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Сталь нержавеющая 08Х16Н11М3 (AISI 316)</td>
+            <td>7900</td>
+            <td>16.3</td>
+            <td>460</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Чугун</td>
+            <td>7220</td>
+            <td>40…60</td>
+            <td>470…540</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Золото Au</td>
+            <td>19320</td>
+            <td>318</td>
+            <td>129</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Индий In</td>
+            <td>7310</td>
+            <td>81.8</td>
+            <td>234</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Иридий Ir</td>
+            <td>22560</td>
+            <td>147</td>
+            <td>126</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Кадмий Cd</td>
+            <td>8650</td>
+            <td>96.9</td>
+            <td>225</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Калий K</td>
+            <td>860</td>
+            <td>79</td>
+            <td>750</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Кальций Ca</td>
+            <td>1550</td>
+            <td>201</td>
+            <td>630</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Кобальт Co</td>
+            <td>8860</td>
+            <td>100</td>
+            <td>420</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Литий</td>
+            <td>534</td>
+            <td>84.4</td>
+            <td>3390</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Магний Mg</td>
+            <td>1738</td>
+            <td>156</td>
+            <td>976</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Манганин</td>
+            <td>8400</td>
+            <td>22</td>
+            <td>420</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Марганец Mn</td>
+            <td>7440</td>
+            <td>6.87</td>
+            <td>478</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Медь Cu</td>
+            <td>8500</td>
+            <td>407</td>
+            <td>420</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Бронза</td>
+            <td>7500…9300</td>
+            <td>22…105</td>
+            <td>400</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Латунь</td>
+            <td>8100…8850</td>
+            <td>70…120</td>
+            <td>400</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Константан</td>
+            <td>8800</td>
+            <td>21</td>
+            <td>410</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Молибден Mo</td>
+            <td>10220</td>
+            <td>138</td>
+            <td>244</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Натрий Na</td>
+            <td>971</td>
+            <td>142</td>
+            <td>1220</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Никель Ni</td>
+            <td>8910</td>
+            <td>90.9</td>
+            <td>443</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Нихром</td>
+            <td>8200…8500</td>
+            <td>11.3</td>
+            <td>450</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Ниобий Nb</td>
+            <td>8570</td>
+            <td>53.7</td>
+            <td>263</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Олово Sn</td>
+            <td>7310</td>
+            <td>66.8</td>
+            <td>226</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Осмий Os</td>
+            <td>22610</td>
+            <td>87.6</td>
+            <td>130</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Палладий Pd</td>
+            <td>12020</td>
+            <td>71.8</td>
+            <td>239</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Платина Pt</td>
+            <td>19590</td>
+            <td>71.6</td>
+            <td>133</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Плутоний Pu</td>
+            <td>19840</td>
+            <td>6.74</td>
+            <td>130</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Победит ВК-8</td>
+            <td>14800</td>
+            <td>50</td>
+            <td>167</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Рений Re</td>
+            <td>21020</td>
+            <td>48</td>
+            <td>153</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Родий Rh</td>
+            <td>12410</td>
+            <td>150</td>
+            <td>243</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Ртуть Hg</td>
+            <td>13530</td>
+            <td>8.3</td>
+            <td>139</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Рубидий Rb</td>
+            <td>1530</td>
+            <td>58.2</td>
+            <td>335</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Рутений Ru</td>
+            <td>12450</td>
+            <td>117</td>
+            <td>238</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Свинец Pb</td>
+            <td>11350</td>
+            <td>35.3</td>
+            <td>128</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Серебро Ag</td>
+            <td>10500</td>
+            <td>429</td>
+            <td>235</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Стронций Sr</td>
+            <td>2540</td>
+            <td>35.4</td>
+            <td>737</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Сурьма Sb</td>
+            <td>6691</td>
+            <td>24.4</td>
+            <td>205</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Таллий Tl</td>
+            <td>11849</td>
+            <td>38.9</td>
+            <td>130</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Тантал Ta</td>
+            <td>16650</td>
+            <td>57.5</td>
+            <td>151</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Титан Ti</td>
+            <td>4540</td>
+            <td>21.9</td>
+            <td>520</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Уран U</td>
+            <td>19050</td>
+            <td>27.5</td>
+            <td>116</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Хром Cr</td>
+            <td>7190</td>
+            <td>94</td>
+            <td>461</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Цинк Zn</td>
+            <td>7133</td>
+            <td>116</td>
+            <td>400</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Цирконий Zr</td>
+            <td>6506</td>
+            <td>22.7</td>
+            <td>291</td>
+        </tr>
+        <tr>
+            <td colspan="4" style="font-weight: bold; padding-left: 1em;"><input type="checkbox" onchange="OnCheckGroup(this)">Пластики</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">АБС пластик</td>
+            <td>1030…1060</td>
+            <td>0.13…0.22</td>
+            <td>1300…2300</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Полиметилметакрилат (оргстекло)</td>
+            <td>1100…1200</td>
+            <td>0.21</td>
+            <td>1270</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Полиацеталь POM</td>
+            <td>1400</td>
+            <td>0.22</td>
+            <td>1500</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Бакелит (карболит)</td>
+            <td>1100…1250</td>
+            <td>0.23</td>
+            <td>1900</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Гетинакс</td>
+            <td>1350</td>
+            <td>0.23</td>
+            <td>1400</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Пенополистирол</td>
+            <td>15…150</td>
+            <td>0.041…0.05</td>
+            <td>1340</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Пенополиуретан</td>
+            <td>40…80</td>
+            <td>0.029…0.041</td>
+            <td>1470</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Полиуретан</td>
+            <td>1200</td>
+            <td>0.32</td>
+            <td>1380</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Поливинилхлорид (ПВХ)</td>
+            <td>1400…1600</td>
+            <td>0.15…0.2</td>
+            <td>880</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Поликарбонат</td>
+            <td>1200</td>
+            <td>0.16</td>
+            <td>1100</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Полипропилен PP</td>
+            <td>900…910</td>
+            <td>0.16…0.22</td>
+            <td>1930</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Полихлорвинил</td>
+            <td>1290…1650</td>
+            <td>0.15</td>
+            <td>1130…1200</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Полиэтилен высокой плотности (HDPE)</td>
+            <td>955</td>
+            <td>0.35…0.48</td>
+            <td>1900…2300</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Полиэтилен низкой плотности (LDPE)</td>
+            <td>920</td>
+            <td>0.25…0.34</td>
+            <td>1700</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Резина твердая обыкновенная</td>
+            <td>900…1200</td>
+            <td>0.16…0.23</td>
+            <td>1350…1400</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Стеклопластик</td>
+            <td>1800</td>
+            <td>0.23</td>
+            <td>800</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Текстолит</td>
+            <td>1300…1400</td>
+            <td>0.23…0.34</td>
+            <td>1470…1510</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Эбонит</td>
+            <td>1200</td>
+            <td>0.16…0.17</td>
+            <td>1430</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Полиэтилентерефталат ПЭТФ</td>
+            <td>1380</td>
+            <td>0.14</td>
+            <td>1030</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Фторопласт-4</td>
+            <td>2200</td>
+            <td>0.25</td>
+            <td>970</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Нейлон (полиамид-66)</td>
+            <td>1300</td>
+            <td>0.17…0.24</td>
+            <td>1600</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Капролон (полиамид-6)</td>
+            <td>1130</td>
+            <td>0.28</td>
+            <td>1310</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Эпоксипласт</td>
+            <td>1250</td>
+            <td>0.59</td>
+            <td>1110</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Полилактид PLA</td>
+            <td>1290</td>
+            <td>0.16</td>
+            <td>540</td>
+        </tr>
+        <tr>
+            <td colspan="4" style="font-weight: bold; padding-left: 1em;"><input type="checkbox" onchange="OnCheckGroup(this)">Древесина</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Бальса</td>
+            <td>150</td>
+            <td>0.043…0.052</td>
+            <td>2900</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Пробка</td>
+            <td>200</td>
+            <td>0.038</td>
+            <td>1800</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Пихта</td>
+            <td>450…550</td>
+            <td>0.1…0.26</td>
+            <td>2700</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Ель</td>
+            <td>450</td>
+            <td>0.11</td>
+            <td>2300</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Сосна</td>
+            <td>520</td>
+            <td>0.09…0.18</td>
+            <td>2300</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Берёза</td>
+            <td>650</td>
+            <td>0.15</td>
+            <td>1250</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Клён</td>
+            <td>670</td>
+            <td>0.19</td>
+            <td>800</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Дуб</td>
+            <td>690</td>
+            <td>0.23</td>
+            <td>2300</td>
+        </tr>
+        <tr>
+            <td colspan="4" style="font-weight: bold; padding-left: 1em;"><input type="checkbox" onchange="OnCheckGroup(this)">Строительные и иные материалы</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Асбест</td>
+            <td>470</td>
+            <td>0.16</td>
+            <td>1050</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Асбестоцементный лист (шифер)</td>
+            <td>1600</td>
+            <td>0.4</td>
+            <td>1500</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Асфальт</td>
+            <td>1100…2110</td>
+            <td>0.7</td>
+            <td>1700…2100</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Битум</td>
+            <td>800…1300</td>
+            <td>0.5</td>
+            <td>1800…1970</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Бумага</td>
+            <td>700…1150</td>
+            <td>0.14</td>
+            <td>1090…1500</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Вата минеральная</td>
+            <td>50…150</td>
+            <td>0.045…0.055</td>
+            <td>800…920</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Вата стеклянная</td>
+            <td>155…200</td>
+            <td>0.03</td>
+            <td>800</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Вата хлопчатобумажная</td>
+            <td>50…80</td>
+            <td>0.042</td>
+            <td>1700</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Вермикулит</td>
+            <td>100…200</td>
+            <td>0.064…0.076</td>
+            <td>840</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Войлок шерстяной</td>
+            <td>150…330</td>
+            <td>0.045…0.052</td>
+            <td>1700</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Гипс</td>
+            <td>1100…1800</td>
+            <td>0.43</td>
+            <td>1050</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Гипсокартон</td>
+            <td>500…900</td>
+            <td>0.12…0.2</td>
+            <td>950</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Глина</td>
+            <td>1600…2900</td>
+            <td>0.7…0.9</td>
+            <td>750</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Грунт сухой</td>
+            <td>1500</td>
+            <td>0.4</td>
+            <td>850</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Железобетон</td>
+            <td>2500</td>
+            <td>1.7</td>
+            <td>840</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Известняк</td>
+            <td>1400…2000</td>
+            <td>0.5…0.93</td>
+            <td>850…920</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Картон гофрированный</td>
+            <td>700</td>
+            <td>0.06…0.07</td>
+            <td>1150</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Керамзит</td>
+            <td>900…1500</td>
+            <td>0.17…0.32</td>
+            <td>750</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Кирпич красный плотный</td>
+            <td>1700…2100</td>
+            <td>0.67</td>
+            <td>840…880</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Кирпич силикатный</td>
+            <td>1000…2200</td>
+            <td>0.5…1.3</td>
+            <td>750…840</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Лед -5°С</td>
+            <td>917</td>
+            <td>2.21</td>
+            <td>2150</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Парафин</td>
+            <td>870…920</td>
+            <td>0.27</td>
+            <td>2200</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Пенобетон</td>
+            <td>300…1250</td>
+            <td>0.12…0.35</td>
+            <td>840</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Пеностекло</td>
+            <td>200…400</td>
+            <td>0.07…0.11</td>
+            <td>840</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Пергамин</td>
+            <td>600</td>
+            <td>0.17</td>
+            <td>1680</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Песок 0% влажности</td>
+            <td>1500</td>
+            <td>0.33</td>
+            <td>800</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Плита ОСП-3</td>
+            <td>640…700</td>
+            <td>0.12</td>
+            <td>1700</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Рубероид</td>
+            <td>600</td>
+            <td>0.17</td>
+            <td>1680</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Снег лежалый при 0°С</td>
+            <td>400…560</td>
+            <td>0.5</td>
+            <td>2100</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Стекло оконное</td>
+            <td>2500</td>
+            <td>0.76</td>
+            <td>840</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Фарфор</td>
+            <td>2300…2500</td>
+            <td>0.25…1.6</td>
+            <td>750…950</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Фанера клееная</td>
+            <td>600</td>
+            <td>0.12…0.18</td>
+            <td>2300…2500</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Фибролит</td>
+            <td>1100</td>
+            <td>0.22</td>
+            <td>1670</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">Эковата</td>
+            <td>35…60</td>
+            <td>0.032…0.041</td>
+            <td>2300</td>
+        </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
